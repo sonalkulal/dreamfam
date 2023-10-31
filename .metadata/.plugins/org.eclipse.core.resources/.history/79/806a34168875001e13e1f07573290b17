@@ -1,0 +1,58 @@
+package com.cucumberproject.steps;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+
+
+import com.cucumberproject.config.Configuration;
+
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+
+public class TestBase {
+	private static final Logger LOG = Logger.getLogger(TestBase.class);
+	public static RemoteWebDriver driver;
+	
+	
+	public static RemoteWebDriver getDriver() {
+		return driver;
+		
+	}
+	
+	//@Parameters("browser-name")
+	@Before
+	public void setUp() {
+		Configuration config=new Configuration();
+		String browserName=config.getBrowserName();
+		if(browserName==null) {
+			browserName="Chrome";
+		}
+		if(browserName.equalsIgnoreCase("Chrome")){
+			driver=new ChromeDriver();
+			
+		}
+		else if(browserName.equalsIgnoreCase("Firefox")){
+			driver=new FirefoxDriver();
+			
+		}
+		else if(browserName.equalsIgnoreCase("InternetExplorer")){
+			driver=new InternetExplorerDriver();
+			
+		}
+		else {
+			System.out.println("Launching default driver");
+			driver=new ChromeDriver();
+		}
+	
+	}
+
+		@After
+		public void tearDown() throws Exception {
+			driver.quit();
+		}
+	}
+	

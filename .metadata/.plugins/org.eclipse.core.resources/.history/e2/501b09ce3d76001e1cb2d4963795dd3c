@@ -1,0 +1,28 @@
+package com.cucumber.pages;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class ContactPage {
+	
+	@FindBy(css="input#wpforms-3347-field_1")
+	WebElement Fname;
+	
+	@FindBy(css="input#wpforms-3347-field_1-last")
+	WebElement Lname;
+	
+	@FindBy(css="input#wpforms-3347-field_2")
+	WebElement email;
+	
+	
+	@FindBy(css="input#wpforms-3347-field_3_1")
+	WebElement Bronze;
+	
+	@FindBy(css="input#wpforms-3347-field_4_1")
+	WebElement Session 1;
+		
+	
+	
+	
+
+}

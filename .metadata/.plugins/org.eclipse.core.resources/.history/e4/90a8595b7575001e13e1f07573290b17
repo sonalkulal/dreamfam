@@ -1,0 +1,3 @@
+Feature: my first feature
+Scenario: my first scenario
+When:say hi to all

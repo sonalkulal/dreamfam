@@ -1,0 +1,6 @@
+Feature: my first feature
+
+Scenario: verify name and email field 
+given open application url
+when enter name and email
+then verify name and email 

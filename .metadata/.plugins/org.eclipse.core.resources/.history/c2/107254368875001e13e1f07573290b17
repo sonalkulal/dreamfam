@@ -1,0 +1,15 @@
+package com.cucumberproject.steps;
+import org.apache.log4j.Logger;
+import io.cucumber.java.en.When;
+
+
+
+public class Stepone {
+	
+	//private static final Logger LOG = Logger.getLogger(Stepone.class);
+	@When("say hi to all")
+	public void m1() {
+		System.out.println("Hi");
+	}
+
+}

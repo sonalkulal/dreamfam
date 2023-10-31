@@ -1,0 +1,8 @@
+Feature: my first feature
+
+Scenario: Name field on contact page should not accept numeric values 
+Given Application url completely launched and user is on the contact page
+When User user enter a name with numbers in the name field and submit the contact form
+Then after submitting contact form user should see an error message indicating that Please enter valid name
+
+

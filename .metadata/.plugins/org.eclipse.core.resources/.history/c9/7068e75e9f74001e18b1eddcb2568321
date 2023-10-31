@@ -1,0 +1,16 @@
+package com.cucumberproject.stepdefinations;
+
+import com.cucumberproject.base.Keywords;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
+
+public class FirstStep {
+	
+	
+	@When("launch application url")
+	public void launchURL() {
+		Keywords  keyword=new Keywords();
+		keyword.launchUrl("https://myntra.com/");
+	}
+}

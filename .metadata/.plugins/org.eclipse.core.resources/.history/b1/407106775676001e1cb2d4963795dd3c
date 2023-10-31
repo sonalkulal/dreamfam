@@ -1,0 +1,30 @@
+package com.cucumberproject.steps;
+
+import com.cucumber.pages.ContactPage;
+import com.cucumberproject.base.Keywords;
+import com.cucumberproject.config.Configuration;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
+
+public class BellatrixSteps {
+	
+	Configuration config=new Configuration();
+	ContactPage contactpage=new ContactPage();
+	Keywords keyword=new Keywords();
+	@Given("open app url")
+	public void openAppUrl() {
+		
+		keyword.launchUrl(config.getAppUrl("beta"));
+		
+	}
+	
+	@When("enter name and email")
+	public void enterNameandEmailField() {
+		contactpage.FillNameandEmailId();
+	}
+	
+	@Then("verify name and emai")
+	
+
+}

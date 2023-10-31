@@ -1,0 +1,41 @@
+package com.cucumberproject.steps;
+
+import org.testng.Assert;
+
+import com.cucumber.pages.ContactPage;
+import com.cucumberproject.base.Keywords;
+import com.cucumberproject.config.Configuration;
+
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class BellatrixSteps {
+	
+	Configuration config=new Configuration();
+	ContactPage contactpage=new ContactPage();
+	Keywords keyword=new Keywords();
+	@Given("open application url")
+	public void openAppUrl() {
+		
+		keyword.launchUrl(config.getAppUrl("beta"));
+		
+	}
+	
+	@When("enter name and email")
+	public void enterNameandEmailField() {
+		contactpage.clickOnContactForm();
+		contactpage.FillContactForm();
+		contactpage.clickOnCaptcha();
+	}
+	
+	@Then("verify name and email")
+	public void verification() {
+		String contactconfirmmsg = keyword.getText("css", "#wpforms-confirmation-3347 > p");
+		Assert.assertFalse(contactconfirmmsg.contains("Thanks for contacting us! We will be in touch with you shortly."),
+				"Please enter valid details");
+
+	}
+
+}

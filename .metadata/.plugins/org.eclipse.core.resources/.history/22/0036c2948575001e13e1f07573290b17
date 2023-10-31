@@ -1,0 +1,7 @@
+package cucumberproject;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+
+public class FeatureRunner extends AbstractTestNGCucumberTests {
+
+}
+

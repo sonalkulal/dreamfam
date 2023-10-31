@@ -1,0 +1,73 @@
+package com.cucumber.pages;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import com.cucumberproject.steps.TestBase;
+
+public class ContactPage {
+	
+	@FindBy(css="#site-navigation > div:first-of-type > ul > li:nth-of-type(5) > a")
+	WebElement contactForm;
+	
+	@FindBy(css="input#wpforms-3347-field_1")
+	WebElement Fname;
+	
+	@FindBy(css="input#wpforms-3347-field_1-last")
+	WebElement Lname;
+	
+	@FindBy(css="input#wpforms-3347-field_2")
+	WebElement email;
+	
+	
+	@FindBy(css="input#wpforms-3347-field_3_1")
+	WebElement Bronze;
+	
+	@FindBy(css="input#wpforms-3347-field_4_1")
+	WebElement Session1;
+	
+	@FindBy(css="input#wpforms-3347-field_5_1")
+	WebElement overnightyes;
+		
+	@FindBy(css="input#wpforms-3347-field_6_1")
+	WebElement emailUpdate;
+	
+	@FindBy(css="textarea#wpforms-3347-field_7")
+	WebElement comments;
+	
+	@FindBy(css="div.recaptcha-checkbox-border")
+	WebElement captcha;
+	
+	@FindBy(css="button#wpforms-submit-3347")
+	WebElement submit;
+	
+	@FindBy(css="label#wpforms-3347-field_2-error")
+	WebElement emailValidation;
+	
+	
+	
+	public ContactPage() {
+		PageFactory.initElements(TestBase.getDriver(),this);
+	}
+	
+	public void clickOnContactForm() {
+		contactForm.click();
+	}
+	
+	public void FillNameandEmailId() {
+		Fname.sendKeys("1234");
+		Lname.sendKeys("Birangal");
+		email.sendKeys("kirtikhande10@gmail.");
+		
+	}
+	
+	public String getEmailValidationMsg() {
+		 String errorMessageOnIncorrectEmail=emailValidation.getText();
+		 return errorMessageOnIncorrectEmail;
+	}
+}
+	
+	
+	
+
