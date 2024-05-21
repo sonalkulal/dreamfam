@@ -1,4 +1,5 @@
 package com.cucumberproject.steps;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,9 +15,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
-
 import com.cucumberproject.config.Configuration;
-
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -28,46 +27,43 @@ public class TestBase {
 	private static final Logger LOG = Logger.getLogger(TestBase.class);
 	public static RemoteWebDriver driver;
 	public Configuration config;
-	
-	
+
 	public static RemoteWebDriver getDriver() {
 		return driver;
-		
+
 	}
-	
-	//@Parameters("browser-name")
+
+	// @Parameters("browser-name")
 	@Before
 	public void setUp() {
-		config=new Configuration();
-		String browserName=config.getBrowserName();
-		if(browserName==null) {
+		config = new Configuration();
+		String browserName = config.getBrowserName();
+		if (browserName == null) {
 			System.out.println("Browser name was not provided, setting up with default browser");
-			browserName="Firefox";
+			browserName = "Firefox";
 		}
-		if(browserName.equalsIgnoreCase("Chrome")){
-			driver=new ChromeDriver();
-			
-		}
-		else if(browserName.equalsIgnoreCase("Firefox")){
-			driver=new FirefoxDriver();
-			
-		}
-		else if(browserName.equalsIgnoreCase("InternetExplorer")){
-			driver=new InternetExplorerDriver();
-			
-		}
-		else {
+		if (browserName.equalsIgnoreCase("Chrome")) {
+			driver = new ChromeDriver();
+
+		} else if (browserName.equalsIgnoreCase("Firefox")) {
+			driver = new FirefoxDriver();
+
+		} else if (browserName.equalsIgnoreCase("InternetExplorer")) {
+			driver = new InternetExplorerDriver();
+
+		} else {
 			System.out.println("Launching default driver");
-			driver=new ChromeDriver();
+			driver = new ChromeDriver();
 		}
-		
+		driver.get(config.getAppUrl("beta"));
+
 	}
-	
-	@After(order=1)
+
+	@After(order = 1)
 	public void takeScreenShotOnTestFailure(Scenario scenario) throws IOException {
-		
+
 		try {
-			if(scenario.isFailed()) {
+			if (scenario.isFailed()) {
 				Date date = new Date();
 				String screnShotFname = date.toString().replace(" ", "-").replace(":", "-");
 
@@ -77,19 +73,17 @@ public class TestBase {
 				BufferedImage img = ashot.shootingStrategy(ShootingStrategies.viewportPasting(3000))
 						.takeScreenshot(TestBase.getDriver()).getImage();
 				String baseDir = System.getProperty("user.dir");
-				ImageIO.write(img, "png",
-						new File(baseDir + "\\src\\main\\resources\\FaildTestCaseScreenShot\\" + screnShotFname +".png"));
-			
+				ImageIO.write(img, "png", new File(
+						baseDir + "\\src\\main\\resources\\FaildTestCaseScreenShot\\" + screnShotFname + ".png"));
+
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
+
 		}
 		driver.quit();
-		
+
 	}
 
-		
-	}
-	
+}
